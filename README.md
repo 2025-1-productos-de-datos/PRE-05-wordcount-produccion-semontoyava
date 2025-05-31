@@ -8,7 +8,7 @@ source .venv/bin/activate
 source setup.sh
 ```
 
-# Configuración en Windows
+# Configuración en  Windows
 
 Ejecute los siguientes comandos en el terminal:
 
