@@ -1,4 +1,4 @@
-# Configuración en MacOS y Linux
+# Configuración en MacOS y Linu
 
 Ejecute los siguientes comandos en el terminal:
 
