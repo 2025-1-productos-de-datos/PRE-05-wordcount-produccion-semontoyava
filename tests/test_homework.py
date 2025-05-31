@@ -1,15 +1,31 @@
-"""Autograding script for student homework."""
+"""Grading"""
 
 import os
 import subprocess
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
-def test_homework():
-    """Test Word Count"""
+def test_01():
 
-    for path in [
-        "Dockerfile",
-        ".dockerignore",
-    ]:
-        if not os.path.exists(path):
-            raise Exception(f"'{path}' directory does not exist")
+    # Test if the homework script runs without errors
+    try:
+        for model in ["elasticnet", "knn"]:
+            subprocess.run(
+                ["python", "-m", "homework", "--model", model],
+                check=True,
+            )
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Error running the homework script: {e}")
+
+    # Ensure the mlruns directory exists
+    assert os.path.exists("my_mlruns"), "mlruns directory does not exist."
+
+    # Check if there are any experiments saved in mlruns/
+    experiments = [
+        d
+        for d in os.listdir("my_mlruns")
+        if os.path.isdir(os.path.join("my_mlruns", d))
+    ]
+    assert len(experiments) > 0, "No experiments found in mlruns directory."
